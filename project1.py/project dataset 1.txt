@@ -1,0 +1,35 @@
+class Crime:
+    def _init_(self, name, category):
+        self.name = name
+        self.category = category
+
+
+class CrimeClassifier:
+    def _init_(self):
+        self.crimes = []
+
+    def add_crime(self, name, category):
+        crime = Crime(name, category)
+        self.crimes.append(crime)
+
+    def classify(self, name):
+        for crime in self.crimes:
+            if crime.name.lower() == name.lower():
+                return crime.category
+        return "Unknown"
+
+
+# Example usage
+classifier = CrimeClassifier()
+
+# Adding crimes to the classifier
+classifier.add_crime("Robbery", "Violent Crime")
+classifier.add_crime("Burglary", "Property Crime")
+classifier.add_crime("Fraud", "White-Collar Crime")
+classifier.add_crime("Assault", "Violent Crime")
+classifier.add_crime("Identity Theft", "White-Collar Crime")
+
+# Classifying crimes
+crime_name = input("Enter the crime name: ")
+crime_category = classifier.classify(crime_name)
+print(f"The crime '{crime_name}' is classified as '{crime_category}'.")
